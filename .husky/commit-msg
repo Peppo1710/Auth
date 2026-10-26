@@ -1,0 +1,10 @@
+#!/usr/bin/env sh
+
+commit_msg=$(cat "$1")
+
+if ! printf '%s\n' "$commit_msg" | grep -Eq '^\[(FEAT|FIX|REFACTOR|CHORE|DOCS|TEST|STYLE|BUILD|CI|PERF|INIT|REMOVE)-[A-Z0-9-]+\]: [a-z].+'; then
+  echo "Invalid commit message!"
+  echo "Required: [TYPE-SCOPE]: short description"
+  echo "Example: [FEAT-AUTH]: add JWT authentication"
+  exit 1
+fi
